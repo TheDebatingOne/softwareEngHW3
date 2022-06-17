@@ -1,6 +1,7 @@
+import java.lang.reflect.Method;
 import java.util.Iterator;
 
-public class ArrayQueue<E extends Cloneable> implements Queue<E> {
+public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Iterable<E> {
     private Cloneable[] data; //the array itself, containing the data
     private int maxCapacity; //max capacity of the arrayQueue
     private int front; //index of front of queue
@@ -67,9 +68,21 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E> {
     }
 
     @Override
-    public Queue<E> clone() {
+    public ArrayQueue<E> clone() {
+        try {
+            ArrayQueue<E> copy = (ArrayQueue<E>) super.clone(); //initial shallow copy
+            Method method = Cloneable.getMethod("clone");
+            for (int i = 0; i < maxCapacity; i++){ //deep copy required
+
+            }
+
+        }
+        catch (CloneNotSupportedException e){
+            return null;
+        }
         return null;
     }
+
 
     @Override
     public Iterator<E> iterator() {
