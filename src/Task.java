@@ -43,4 +43,8 @@ public class Task implements Cloneable {
         return this.description.equals(((Task) obj).description);
     }
 
+    @Override
+    public int hashCode(){
+        return description.hashCode() * dueDate.hashCode();
+    }
 }
