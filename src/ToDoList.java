@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
-public class ToDoList implements Cloneable{
+public class ToDoList implements Cloneable, TaskIterable{
     private ArrayList<Task> tasks;
 
     public void addTask(Task task){
@@ -85,5 +87,21 @@ public class ToDoList implements Cloneable{
             hash = (hash * tasks.get(i).hashCode()) % Integer.MAX_VALUE;
         }
         return hash;
+    }
+
+
+    @Override
+    public ToDoListIterator setScanningDueDate(Date scanningDueDate) {
+        return null;
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<Task> iterator() {
+        return null;
     }
 }
