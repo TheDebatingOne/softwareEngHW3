@@ -3,7 +3,7 @@ import java.util.Date;
 public class Task implements Cloneable {
 
 
-    private String description;
+    private final String description;
     private Date dueDate;
 
     public Task(String description, Date date){
@@ -22,12 +22,12 @@ public class Task implements Cloneable {
     @Override
     public Task clone() {
         try {
-            Task copy = (Task) super.clone();
-            copy.dueDate = (Date) this.dueDate.clone();
+            Task copy = (Task) super.clone(); //shallow cloning
+            copy.dueDate = (Date) this.dueDate.clone(); //deep cloning
             // TODO: copy mutable state here, so the clone can't change the internals of the original
             return copy;
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+            return null;
         }
     }
 
@@ -36,4 +36,11 @@ public class Task implements Cloneable {
         String dateString = this.dueDate.toString();
         return "(" + this.description + "," + dateString + ")";
     }
+
+    @Override
+    public boolean equals (Object obj){
+        if(!(obj instanceof Task)) return false; //if not task at all...
+        return this.description.equals(((Task) obj).description);
+    }
+
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ToDoList {
+public class ToDoList implements Cloneable{
     private ArrayList<Task> tasks;
 
     public void addTask(Task task){
@@ -30,5 +30,31 @@ public class ToDoList {
             }
         }
         return toReturn.toString();
+    }
+
+
+    @Override
+    public ToDoList clone() {
+        try {
+            ToDoList copy = (ToDoList) super.clone(); //shallow copy
+            copy.tasks = new ArrayList<Task>();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            int size = tasks.size(); //initializing tasks arrayList
+            for (int i = 0; i < size; i++) { //deep cloning - cloning each task in tasks arrayList
+                if(tasks.get(i) != null){
+                    copy.tasks.add(tasks.get(i).clone());
+                }
+            }
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof ToDoList)) return false;
+        ToDoList toDoList = (ToDoList) obj;
+
     }
 }
