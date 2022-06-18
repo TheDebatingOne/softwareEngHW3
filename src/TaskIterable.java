@@ -4,5 +4,5 @@ import java.util.Iterator;
 public interface TaskIterable extends Iterable<Task> {
 
 
-    public ToDoListIterator setScanningDueDate(Date scanningDueDate);
+    public void setScanningDueDate(Date scanningDueDate);
 }

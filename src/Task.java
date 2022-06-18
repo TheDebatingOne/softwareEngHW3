@@ -48,4 +48,8 @@ public class Task implements Cloneable {
     public int hashCode(){
         return description.hashCode() * dueDate.hashCode();
     }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
 }

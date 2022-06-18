@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 public class ToDoList implements Cloneable, TaskIterable{
     private ArrayList<Task> tasks;
+    private Date scanningDueDate;
 
     public void addTask(Task task){
         String description = task.getDescription();
@@ -80,8 +81,8 @@ public class ToDoList implements Cloneable, TaskIterable{
 
 
     @Override
-    public ToDoListIterator setScanningDueDate(Date scanningDueDate) {
-        return null;
+    public void setScanningDueDate(Date scanningDueDate) {
+        this.scanningDueDate = scanningDueDate;
     }
 
     /**
@@ -91,6 +92,6 @@ public class ToDoList implements Cloneable, TaskIterable{
      */
     @Override
     public Iterator<Task> iterator() {
-        return null;
+        return new ToDoListIterator(this.tasks.get(0), this.scanningDueDate);
     }
 }
