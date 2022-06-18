@@ -40,7 +40,8 @@ public class Task implements Cloneable {
     @Override
     public boolean equals (Object obj){
         if(!(obj instanceof Task)) return false; //if not task at all...
-        return this.description.equals(((Task) obj).description);
+        Task task = (Task) obj; //downcasting
+        return this.description.equals(task.description) && this.dueDate.equals(task.dueDate);
     }
 
     @Override
