@@ -79,7 +79,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Ite
             }
 
         }
-        catch (CloneNotSupportedException e){
+        catch (CloneNotSupportedException | NullPointerException e){
             return null;
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
