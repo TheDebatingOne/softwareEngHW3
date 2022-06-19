@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
@@ -64,23 +65,26 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Ite
 
     @Override
     public boolean isEmpty() {
-        return numElements == 0 || front < 0 || rear <0;
+        return numElements == 0 || front < 0 || rear < 0;
     }
 
     @Override
     public ArrayQueue<E> clone() {
+        ArrayQueue<E> copy = null;
         try {
-            ArrayQueue<E> copy = (ArrayQueue<E>) super.clone(); //initial shallow copy
-            Method method = Cloneable.getMethod("clone");
+            copy = (ArrayQueue<E>) super.clone(); //initial shallow copy
+            Method method = data[front].getClass().getMethod("clone");
             for (int i = 0; i < maxCapacity; i++){ //deep copy required
-
+                copy.data[i] = (Cloneable) method.invoke(data[i]);
             }
 
         }
         catch (CloneNotSupportedException e){
             return null;
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
         }
-        return null;
+        return copy;
     }
 
 
