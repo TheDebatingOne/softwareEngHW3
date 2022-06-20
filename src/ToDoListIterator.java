@@ -15,6 +15,9 @@ public class ToDoListIterator implements Iterator<Task>{
      * @return {@code true} if the iteration has more elements
      */
 
+    public ToDoListIterator(){
+        this.list = new ToDoList();
+    }
     public ToDoListIterator(ToDoList toDoList){
         this.list = toDoList.clone();
         this.list.sort();
@@ -22,8 +25,13 @@ public class ToDoListIterator implements Iterator<Task>{
     }
     @Override
     public boolean hasNext() {
-        ArrayList<Task> tasks = this.list.getTasks();
-        return !(nextIndex == tasks.size() || (tasks.get(nextIndex).getDueDate().compareTo(this.list.getScanningDueDate()) > 0));
+        try {
+            ArrayList<Task> tasks = this.list.getTasks();
+            return !(nextIndex == tasks.size() || (tasks.get(nextIndex).getDueDate().compareTo(this.list.getScanningDueDate()) > 0));
+        }
+        catch (NullPointerException e){
+            return false;
+        }
     }
 
     /**

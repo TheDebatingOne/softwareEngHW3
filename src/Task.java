@@ -5,7 +5,6 @@ public class Task implements Cloneable, Comparable<Task> {
 
     private final String description;
     private Date dueDate;
-    private Task nextTask;
 
     public Task(String description, Date date){
         this.description = description;
@@ -52,14 +51,6 @@ public class Task implements Cloneable, Comparable<Task> {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public void setNextTask(Task nextTask){
-        this.nextTask = nextTask;
-    }
-
-    public Task getNextTask() {
-        return nextTask;
     }
 
 

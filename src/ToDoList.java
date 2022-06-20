@@ -7,6 +7,9 @@ public class ToDoList implements Cloneable, TaskIterable{
     private ArrayList<Task> tasks;
     private Date scanningDueDate;
 
+    public ToDoList(){
+        tasks = new ArrayList<Task>();
+    }
 
     public void addTask(Task newTask){
         String description = newTask.getDescription();
@@ -16,7 +19,6 @@ public class ToDoList implements Cloneable, TaskIterable{
             }
         }
         //after checking there is no other task with this description
-        tasks.get(tasks.size() - 1).setNextTask(newTask);
         tasks.add(newTask);
     }
 
@@ -52,7 +54,7 @@ public class ToDoList implements Cloneable, TaskIterable{
                 }
             }
             return copy;
-        } catch (CloneNotSupportedException e) {
+        } catch (Exception e) {
             return null;
         }
     }
