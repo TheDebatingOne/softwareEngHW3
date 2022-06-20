@@ -3,7 +3,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ToDoListIterator implements Iterator<Task>{
-    private Task nextTask;
+    private int nextIndex;
+    private ToDoList list;
     //nextTask is the next task in ToDoList's tasks arrayList. not the next with the correct dueDate! it's like a linked list
     private Date scanningDueDate;
     /**
@@ -14,16 +15,14 @@ public class ToDoListIterator implements Iterator<Task>{
      * @return {@code true} if the iteration has more elements
      */
 
-    public ToDoListIterator(Task nextTask, Date scanningDueDate){
-        this.nextTask = nextTask;
-        this.scanningDueDate = scanningDueDate;
+    public ToDoListIterator(ToDoList toDoList){
+        this.list = toDoList.clone();
+        this.list.sort();
+        nextIndex = 0;
     }
     @Override
     public boolean hasNext() {
-        if (scanningDueDate != null){ //if there's a date
-
-        }
-        return false; //if no next
+        return nextIndex != list.si && (scanningDueDate == null || scanningDueDate.compareTo(nextTask.getDueDate()) <= 0);
     }
 
     /**
@@ -37,6 +36,7 @@ public class ToDoListIterator implements Iterator<Task>{
         if (!hasNext()){
             throw new  NoSuchElementException();
         }
-        return this.nextTask;
+        nextTask = nextTask.getNextTask();
+        return nextTask;
     }
 }

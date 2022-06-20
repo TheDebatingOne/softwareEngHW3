@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -6,15 +7,18 @@ public class ToDoList implements Cloneable, TaskIterable{
     private ArrayList<Task> tasks;
     private Date scanningDueDate;
 
-    public void addTask(Task task){
-        String description = task.getDescription();
+    public ToDoList(tasks)
+
+    public void addTask(Task newTask){
+        String description = newTask.getDescription();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i) != null && tasks.get(i).getDescription().equals(description)){
                 throw new TaskAlreadyExistsException();
             }
         }
         //after checking there is no other task with this description
-        tasks.add(task);
+        tasks.get(tasks.size() - 1).setNextTask(newTask);
+        tasks.add(newTask);
     }
 
     @Override
@@ -92,6 +96,11 @@ public class ToDoList implements Cloneable, TaskIterable{
      */
     @Override
     public Iterator<Task> iterator() {
-        return new ToDoListIterator(this.tasks.get(0), this.scanningDueDate);
+        return new ToDoListIterator(this);
     }
+
+    public void sort(){
+        Collections.sort(this.tasks);
+    }
+
 }
