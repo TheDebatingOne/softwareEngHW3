@@ -43,7 +43,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Ite
         this.data[front] = null;
         this.front = (front + 1) % maxCapacity; //cyclic, in order to use all available capaity..
         this.numElements -= 1;
-        if(numElements == 1){ //if only one element (meaning front == end)
+        if(numElements == 0){ //if only one element (meaning front == end)
             front = -1; //"resetting" the array to empty, as in constructor
             rear = -1;
         }
