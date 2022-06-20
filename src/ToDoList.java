@@ -28,7 +28,7 @@ public class ToDoList implements Cloneable, TaskIterable{
         int size = tasks.size();
         for (int i = 0; i < size; i++) {
             if (tasks.get(i) != null){
-                String toAppend = tasks.get(i).toString()+",";
+                String toAppend = "(" + tasks.get(i).toString()+"),";
                 toReturn.append(toAppend);
                 if (i == size- 1){ //last one
                     toReturn.append("]");
