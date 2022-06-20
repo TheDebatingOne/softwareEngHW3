@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task implements Cloneable, Comparable<Task> {
@@ -33,8 +35,8 @@ public class Task implements Cloneable, Comparable<Task> {
 
     @Override
     public String toString(){
-        String dateString = this.dueDate.toString();
-        return "(" + this.description + "," + dateString + ")";
+        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        return this.description + ", " + formatter.format(this.dueDate);
     }
 
     @Override
