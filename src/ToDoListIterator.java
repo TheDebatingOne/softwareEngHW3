@@ -27,7 +27,7 @@ public class ToDoListIterator implements Iterator<Task>{
     public boolean hasNext() {
         try {
             ArrayList<Task> tasks = this.list.getTasks();
-            return !(nextIndex == tasks.size() || (tasks.get(nextIndex).getDueDate().compareTo(this.list.getScanningDueDate()) > 0));
+            return nextIndex != tasks.size() && tasks.get(nextIndex).getDueDate().compareTo(this.list.getScanningDueDate()) < 1;
         }
         catch (NullPointerException e){
             return false;
