@@ -90,6 +90,16 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Ite
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ArrayQueueIterator<E>(this);
     }
+
+    public int getRear() {
+        return rear;
+    }
+
+    public Cloneable[] getData() {
+        return data;
+    }
+
+
 }
