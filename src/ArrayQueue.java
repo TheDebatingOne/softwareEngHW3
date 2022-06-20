@@ -74,15 +74,15 @@ public class ArrayQueue<E extends Cloneable> implements Queue<E>, Cloneable, Ite
         try {
             copy = (ArrayQueue<E>) super.clone(); //initial shallow copy
             Method method = data[front].getClass().getMethod("clone");
-            for (int i = 0; i < maxCapacity; i++){ //deep copy required
-                copy.data[i] = (Cloneable) method.invoke(data[i]);
+            int realIndex;
+            for (int i = 0; i < numElements; i++){ //deep copy required
+                realIndex = (front + i)%maxCapacity;
+                copy.data[realIndex] = (Cloneable) method.invoke(data[realIndex]);
             }
 
         }
-        catch (CloneNotSupportedException | NullPointerException e){
+        catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | CloneNotSupportedException | NullPointerException e) {
             return null;
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
         }
         return copy;
     }
