@@ -30,7 +30,7 @@ public class ToDoListIterator implements Iterator<Task>{
             return nextIndex != tasks.size() && tasks.get(nextIndex).getDueDate().compareTo(this.list.getScanningDueDate()) < 1;
         }
         catch (NullPointerException e){
-            return false;
+            return true;
         }
     }
 
