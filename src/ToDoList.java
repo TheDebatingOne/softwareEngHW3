@@ -7,7 +7,6 @@ public class ToDoList implements Cloneable, TaskIterable{
     private ArrayList<Task> tasks;
     private Date scanningDueDate;
 
-    public ToDoList(tasks)
 
     public void addTask(Task newTask){
         String description = newTask.getDescription();
@@ -103,4 +102,12 @@ public class ToDoList implements Cloneable, TaskIterable{
         Collections.sort(this.tasks);
     }
 
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+
+    public Date getScanningDueDate() {
+        return scanningDueDate;
+    }
 }

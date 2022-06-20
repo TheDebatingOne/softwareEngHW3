@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Task implements Cloneable, Comparable {
+public class Task implements Cloneable, Comparable<Task> {
 
 
     private final String description;
@@ -62,6 +62,7 @@ public class Task implements Cloneable, Comparable {
         return nextTask;
     }
 
+
     /**
      * Compares this object with the specified object for order.  Returns a
      * negative integer, zero, or a positive integer as this object is less
@@ -81,7 +82,7 @@ public class Task implements Cloneable, Comparable {
      * x.compareTo(y)==0} implies that {@code signum(x.compareTo(z))
      * == signum(y.compareTo(z))}, for all {@code z}.
      *
-     * @param o the object to be compared.
+     * @param otherTask the object to be compared.
      * @return a negative integer, zero, or a positive integer as this object
      * is less than, equal to, or greater than the specified object.
      * @throws NullPointerException if the specified object is null
@@ -94,7 +95,9 @@ public class Task implements Cloneable, Comparable {
      * language is "Note: this class has a natural ordering that is
      * inconsistent with equals."
      */
+    @Override
     public int compareTo(Task otherTask) {
         return (dueDate.compareTo(otherTask.getDueDate())); //Due date based comparison
+
     }
 }
